@@ -1,3 +1,7 @@
+# Newx calls Perl_croak_nocontext with a char * without "%s", may be
+# valid or not but it isn't fixable here, keep this until perl is fixed 
+%define Werror_cflags %nil
+
 %define real_name Goo-Canvas
 
 
