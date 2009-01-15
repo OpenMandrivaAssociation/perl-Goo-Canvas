@@ -10,7 +10,6 @@ Group:		Development/Perl
 URL:		http://search.cpan.org/dist/%{real_name}
 Source0:	http://search.cpan.org/CPAN/authors/id/Y/YE/YEWENBIN/%{real_name}-%{version}.tar.gz
 BuildRequires:	perl-devel perl-ExtUtils-Depends perl-ExtUtils-PkgConfig libgoocanvas-devel
-BuildArch:	mipsel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
