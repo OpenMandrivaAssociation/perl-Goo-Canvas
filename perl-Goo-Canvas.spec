@@ -18,6 +18,7 @@ BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils-Depends
 BuildRequires:	perl-ExtUtils-PkgConfig
 BuildRequires:	perl-Glib
+BuildRequires:	perl-Gtk2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
