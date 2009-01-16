@@ -13,7 +13,11 @@ License:	GPL or Artistic
 Group:		Development/Perl
 URL:		http://search.cpan.org/dist/%{real_name}
 Source0:	http://search.cpan.org/CPAN/authors/id/Y/YE/YEWENBIN/%{real_name}-%{version}.tar.gz
-BuildRequires:	perl-devel perl-ExtUtils-Depends perl-ExtUtils-PkgConfig libgoocanvas-devel
+BuildRequires:	libgoocanvas-devel
+BuildRequires:	perl-devel
+BuildRequires:	perl-ExtUtils-Depends
+BuildRequires:	perl-ExtUtils-PkgConfig
+BuildRequires:	perl-Glib
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
