@@ -1,4 +1,4 @@
-%define upstream_name    Goo-Canvas
+%define upstream_name Goo-Canvas
 %define upstream_version 0.06
 
 # Newx calls Perl_croak_nocontext with a char * without "%s", may be
@@ -6,10 +6,9 @@
 %define Werror_cflags %nil
 
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 1
-
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	2
 Summary:	Goo::Canvas Perl interface to the GooCanvas 
 License:	GPL+ or Artistic
 Group:		Development/Perl
@@ -22,7 +21,6 @@ BuildRequires:	perl-ExtUtils-PkgConfig
 BuildRequires:	perl-Glib
 BuildRequires:	perl-Gtk2
 BuildRequires:	perl-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 GTK+ does't has an buildin canvas widget. GooCanvas is wonderful. It is
@@ -42,16 +40,12 @@ perl-Goo::Canvas and GooCanvas.
 %{__make} test
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 rm -f %{buildroot}/usr/bin/perltetris.pl
 rm -f %{buildroot}/usr/bin/perlmine.pl
 
-%clean 
-rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %dir %{perl_vendorarch}/Goo/Cairo
 %dir %{perl_vendorarch}/Goo/Canvas
 %{perl_vendorarch}/Goo/*.pod
