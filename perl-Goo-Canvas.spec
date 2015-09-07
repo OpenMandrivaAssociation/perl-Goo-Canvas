@@ -8,7 +8,7 @@
 
 Name:		perl-%{upstream_name}
 Version:	%perl_convert_version %{upstream_version}
-Release:	4
+Release:	5
 Summary:	Goo::Canvas Perl interface to the GooCanvas 
 License:	GPL+ or Artistic
 Group:		Development/Perl
@@ -57,29 +57,3 @@ rm -f %{buildroot}/usr/bin/perlmine.pl
 %{_mandir}/*/*
 
 
-%changelog
-* Wed Aug 05 2009 Jérôme Quelin <jquelin@mandriva.org> 0.60.0-1mdv2010.0
-+ Revision: 410071
-- rebuild using %%perl_convert_version
-
-* Sat May 09 2009 Guillaume Rousse <guillomovitch@mandriva.org> 0.06-1mdv2010.0
-+ Revision: 373735
-- update to new version 0.06
-
-* Sat Jan 17 2009 Herton Ronaldo Krzesinski <herton@mandriva.com.br> 0.05-2mdv2009.1
-+ Revision: 330437
-- Rebuild for fixed package changelog.
-
-* Fri Jan 16 2009 Herton Ronaldo Krzesinski <herton@mandriva.com.br> 0.05-1mdv2009.1
-+ Revision: 330161
-- Add missing BuildRequires for perl-Gtk2.
-- Add missing BuildRequires for perl-Glib.
-- Newx perl function breaks build with -Werror=format-security, if a fix
-  is needed must be done in perl, while this doesn't happen fix build
-  here by disabling Werror_cflags.
-- Remove uneeded BuildArch tag.
-- Import perl-Goo-Canvas package, made/sent by Ednilson Miura.
-
-
-* Wed Jan 14 2009 Ednilson Miura <miura@mandriva.com> 0.05-1mdv2008.1
-- First build
