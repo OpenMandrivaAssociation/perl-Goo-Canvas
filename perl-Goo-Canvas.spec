@@ -16,7 +16,7 @@ Url:		http://search.cpan.org/dist/%{upstream_name}
 Source0:	http://search.cpan.org/CPAN/authors/id/Y/YE/YEWENBIN/%{upstream_name}-%{upstream_version}.tar.gz
 Source1:	perl-Goo-Canvas.rpmlintrc
 
-BuildRequires:	libgoocanvas-devel
+BuildRequires:	pkgconfig(goocanvas) 
 BuildRequires:	perl-ExtUtils-Depends
 BuildRequires:	perl-ExtUtils-PkgConfig
 BuildRequires:	perl-Glib
