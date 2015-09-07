@@ -48,6 +48,7 @@ rm -f %{buildroot}/usr/bin/perlmine.pl
 %files
 %dir %{perl_vendorarch}/Goo/Cairo
 %dir %{perl_vendorarch}/Goo/Canvas
+%dir %{perl_vendorarch}/Goo/Canvas/Install
 %{perl_vendorarch}/Goo/*.pod
 %{perl_vendorarch}/Goo/*.pm
 %{perl_vendorarch}/Goo/Cairo/*.pod
