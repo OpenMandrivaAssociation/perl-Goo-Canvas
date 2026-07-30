@@ -8,7 +8,7 @@
 
 Name:		perl-%{upstream_name}
 Version:	0.06
-Release:	2
+Release:	3
 Summary:	Goo::Canvas Perl interface to the GooCanvas 
 License:	GPL+ or Artistic
 Group:		Development/Perl
