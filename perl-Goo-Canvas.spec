@@ -8,7 +8,7 @@
 
 Name:		perl-%{upstream_name}
 Version:	0.06
-Release:	5
+Release:	6
 Summary:	Goo::Canvas Perl interface to the GooCanvas 
 License:	GPL+ or Artistic
 Group:		Development/Perl
@@ -34,7 +34,9 @@ perl-Goo::Canvas and GooCanvas.
 %setup -q -n Goo-Canvas-0.06
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+export CFLAGS="%{optflags} -Wno-error=implicit-function-declaration -Wno-error=int-conversion"
+export CXXFLAGS="$CFLAGS"
+perl Makefile.PL INSTALLDIRS=vendor
 %{__make} OPTIMIZE="$RPM_OPT_FLAGS"
 
 %check
@@ -42,6 +44,7 @@ perl-Goo::Canvas and GooCanvas.
 set +e
 %{__make} test
 :  # soft check
+:  # soft
 %install
 %makeinstall_std
 rm -f %{buildroot}/usr/bin/perltetris.pl
