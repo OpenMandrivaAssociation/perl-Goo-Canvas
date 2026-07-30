@@ -8,12 +8,12 @@
 
 Name:		perl-%{upstream_name}
 Version:	%{upstream_version}
-Release:	6
+Release:	1
 Summary:	Goo::Canvas Perl interface to the GooCanvas 
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:		https://metacpan.org/dist/Goo-Canvas
-Source0:	https://cpan.metacpan.org/authors/id/Y/YE/YEWENBIN/Goo-Canvas-%{upstream_version}.tar.gz
+Source0:	https://cpan.metacpan.org/authors/id/Y/YE/YEWENBIN/Goo-Canvas-0.06.tar.gz
 Source1:	perl-Goo-Canvas.rpmlintrc
 
 BuildRequires:	pkgconfig(goocanvas) 
