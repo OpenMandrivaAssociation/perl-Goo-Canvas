@@ -8,7 +8,7 @@
 
 Name:		perl-%{upstream_name}
 Version:	0.06
-Release:	23
+Release:	24
 Summary:	Goo::Canvas Perl interface to the GooCanvas 
 License:	GPL+ or Artistic
 Group:		Development/Perl
@@ -45,6 +45,7 @@ set +e
 %{__make} test
 :  # soft check
 :  # soft
+:  # soft check
 :  # soft check
 :  # soft check
 :  # soft check
