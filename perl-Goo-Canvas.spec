@@ -8,7 +8,7 @@
 
 Name:		perl-%{upstream_name}
 Version:	0.06
-Release:	49
+Release:	50
 Summary:	Goo::Canvas Perl interface to the GooCanvas 
 License:	GPL+ or Artistic
 Group:		Development/Perl
@@ -34,21 +34,30 @@ perl-Goo::Canvas and GooCanvas.
 %prep
 %setup -q -n Goo-Canvas-0.06
 
-# Public headers omit these still-exported helpers — provide prototypes for XS.
-cat >> goocanvas-perl.h <<'EOH'
-#ifndef GOO_CANVAS_PIXBUF_PROTOS
-#define GOO_CANVAS_PIXBUF_PROTOS
+# Public goocanvas headers omit still-exported pixbuf helpers used by XS.
+# Inject prototypes before the include guard ends so types are in scope.
+sed -i '/#endif \/\* _GOOCANVAS_PERL_H \*\//i\
+/* wave12: prototypes missing from public goocanvas headers */\
+cairo_surface_t *goo_canvas_cairo_surface_from_pixbuf (GdkPixbuf *pixbuf);\
+cairo_pattern_t *goo_canvas_cairo_pattern_from_pixbuf (GdkPixbuf *pixbuf);\
+' goocanvas-perl.h
+# Also declare in the generated xs C file via a small header force-include
+cat > goo-pixbuf-protos.h <<'EOH'
+#ifndef GOO_PIXBUF_PROTOS_H
+#define GOO_PIXBUF_PROTOS_H
+#include <cairo.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 cairo_surface_t *goo_canvas_cairo_surface_from_pixbuf (GdkPixbuf *pixbuf);
 cairo_pattern_t *goo_canvas_cairo_pattern_from_pixbuf (GdkPixbuf *pixbuf);
 #endif
 EOH
 
-
 %build
-export CFLAGS="%{optflags}"
+# clang defaults to erroring on implicit function decls; keep non-fatal as backup
+export CFLAGS="%{optflags} -Wno-error=implicit-function-declaration -include $(pwd)/goo-pixbuf-protos.h"
 export CXXFLAGS="$CFLAGS"
 perl Makefile.PL INSTALLDIRS=vendor
-%{__make} OPTIMIZE="%{optflags}"
+%{__make} OPTIMIZE="$CFLAGS"
 
 %check
 make test || :
