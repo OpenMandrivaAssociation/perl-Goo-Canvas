@@ -8,7 +8,7 @@
 
 Name:		perl-%{upstream_name}
 Version:	0.06
-Release:	48
+Release:	49
 Summary:	Goo::Canvas Perl interface to the GooCanvas 
 License:	GPL+ or Artistic
 Group:		Development/Perl
@@ -34,60 +34,25 @@ perl-Goo::Canvas and GooCanvas.
 %prep
 %setup -q -n Goo-Canvas-0.06
 
+# Public headers omit these still-exported helpers — provide prototypes for XS.
+cat >> goocanvas-perl.h <<'EOH'
+#ifndef GOO_CANVAS_PIXBUF_PROTOS
+#define GOO_CANVAS_PIXBUF_PROTOS
+cairo_surface_t *goo_canvas_cairo_surface_from_pixbuf (GdkPixbuf *pixbuf);
+cairo_pattern_t *goo_canvas_cairo_pattern_from_pixbuf (GdkPixbuf *pixbuf);
+#endif
+EOH
+
+
 %build
-export CFLAGS="%{optflags} -Wno-error=implicit-function-declaration -Wno-error=int-conversion"
+export CFLAGS="%{optflags}"
 export CXXFLAGS="$CFLAGS"
 perl Makefile.PL INSTALLDIRS=vendor
-%{__make} OPTIMIZE="$RPM_OPT_FLAGS"
+%{__make} OPTIMIZE="%{optflags}"
 
 %check
-# soft: do not fail package on test failures
-set +e
-%{__make} test
-:  # soft check
-:  # soft
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
-:  # soft check
 make test || :
+
 %install
 %makeinstall_std
 rm -f %{buildroot}/usr/bin/perltetris.pl
